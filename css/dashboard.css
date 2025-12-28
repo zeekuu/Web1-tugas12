@@ -164,9 +164,12 @@ form input {
     padding: 12px 15px;
     border-radius: 8px;
     border: none;
-    background-color: #2a2a3d;
-    color: white;
+    color: #fbfbfb;
+    background-color: #2c264d;
     box-sizing: border-box;
+}
+::placeholder {
+    color: #fbfbfb;
 }
 
 .btn-tambah {
@@ -202,3 +205,4 @@ form input {
     border-radius: 20px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
 }
+
