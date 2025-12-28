@@ -17,6 +17,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $username = htmlspecialchars($_POST["username"]);
     $email = htmlspecialchars($_POST["email"]);
     $password = htmlspecialchars($_POST["password"]);
+    $cekDuplikasi = mysqli_query($koneksi, "SELECT * FROM tengku_datausers WHERE email = '$email' OR username = '$username'");
+    if(mysqli_num_rows($cekDuplikasi) > 0){
+    $data = mysqli_fetch_array($cekDuplikasi);
+
+    if($data['username'] == $username){
+        echo  "<script>
+            alert('Username nya Udah Ada Mas');
+            history.back();
+        </script>";
+    } else {
+        echo "<script>
+            alert('Emailnya Udah Ada Mas');
+            history.back();
+        </script>";
+    }
+} else {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $query =" INSERT INTO tengku_datausers (nama, username, email, password) VALUES ('$nama', '$username', '$email', '$password')";
 
@@ -28,6 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         echo "Error: " . mysqli_error($koneksi);
     }
+}
 }
 ?>
 
